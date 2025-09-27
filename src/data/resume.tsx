@@ -201,21 +201,39 @@ export const DATA = {
   ],
   hackathons: [
     {
-      title: "HackED 2024",
-      dates: "Jan 2024",
+      title: " 🏆 1st Place at Hack4Health 2025",
+      dates: "Apr 2025",
+      location: "Edmonton, AB",
+      description:
+        "Built Meducation, which is an AI-powered platform that revolutionizes medical education with tools like AI X-ray analysis, smart research summaries, VR case studies, and personalized exam prep to make learning more engaging, efficient, and impactful.",
+      image: "/aisocialgood.png",
+      links: [],
+    },
+    {
+      title: "2nd Place at Devcon Hackathon 2025",
+      dates: "Mar 2025",
       location: "University of Alberta",
       description:
-        "Built an AI-powered grocery assistant that helps users reduce food waste. Focused on OCR receipt scanning and expiry prediction.",
+        "Built RideSafe, which is an AI-powered app that enhances public transit safety by detecting real-time threats with computer vision and enabling instant rider reports through a seamless mobile experience.",
       image: "/hacked.png",
       links: [],
     },
     {
-      title: "AI for Social Good Hackathon",
-      dates: "2023",
-      location: "Toronto, ON",
+      title: "HackED 2025",
+      dates: "Feb 2025",
+      location: "University of Alberta",
       description:
-        "Developed a computer vision model to analyze accessibility features in public spaces and provide real-time feedback for urban design improvements.",
-      image: "/aisocialgood.png",
+        "Built FoodMinder, a smart grocery management app that helps reduce food waste, save money, and support sustainability through AI-powered receipt scanning, expiry tracking, recipe suggestions, and donation center recommendations.",
+      image: "/hacked.png",
+      links: [],
+    },
+  {
+      title: "2nd Place at DevelopEd 2.0 2024",
+      dates: "Feb 2025",
+      location: "University of Alberta",
+      description:
+      "Built, Scheduler, a dynamic schedule-making app that helps users balance fixed commitments with flexible tasks, making time management smarter and more adaptable.",
+      image: "/hacked.png",
       links: [],
     },
   ],
