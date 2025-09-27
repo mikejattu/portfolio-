@@ -45,12 +45,6 @@ export const DATA = {
         icon: Icons.linkedin,
         navbar: true,
       },
-      X: {
-        name: "X",
-        url: "https://x.com/mikejattu",
-        icon: Icons.x,
-        navbar: false,
-      },
       Youtube: {
         name: "Youtube",
         url: "https://youtube.com/@mikejattu",
