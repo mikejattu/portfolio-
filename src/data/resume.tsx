@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon } from "lucide-react";
+import { HomeIcon, NotebookIcon, PenLine } from "lucide-react";
 export const DATA = {
   name: "Mike Jattu",
   initials: "MJ",
@@ -27,7 +27,7 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/projects", icon: NotebookIcon, label: "Projects" },
+    { href: "/blog", icon: PenLine, label: "Blog" },
   ],
   contact: {
     email: "sjattu@ualberta.ca",

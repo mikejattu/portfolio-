@@ -1,3 +1,4 @@
+import { BlogCard } from "@/components/blog-card";
 import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
@@ -5,13 +6,16 @@ import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { getBlogPosts } from "@/data/blog";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function Page() {
+export default async function Page() {
+  const posts = await getBlogPosts();
+  
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
@@ -218,6 +222,65 @@ export default function Page() {
               ))}
             </ul>
           </BlurFade>
+        </div>
+      </section>
+      <section id="blog">
+        <div className="space-y-12 w-full py-12">
+          <BlurFade delay={BLUR_FADE_DELAY * 15}>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  Blog
+                </div>
+                <h2 className="text-4xl font-bold tracking-tighter sm:text-6xl">
+                  Mike&apos;s Blog ✍️
+                </h2>
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  I write about AI, machine learning, software development, and
+                  lessons learned along the way.
+                </p>
+              </div>
+            </div>
+          </BlurFade>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-[800px] mx-auto">
+            {posts
+              .sort((a, b) => {
+                if (
+                  new Date(a.metadata.publishedAt) >
+                  new Date(b.metadata.publishedAt)
+                ) {
+                  return -1;
+                }
+                return 1;
+              })
+              .slice(0, 4)
+              .map((post, id) => (
+                <BlurFade
+                  key={post.slug}
+                  delay={BLUR_FADE_DELAY * 16 + id * 0.05}
+                >
+                  <BlogCard
+                    title={post.metadata.title}
+                    summary={post.metadata.summary}
+                    publishedAt={post.metadata.publishedAt}
+                    slug={post.slug}
+                  />
+                </BlurFade>
+              ))}
+          </div>
+          {posts.length > 4 && (
+            <BlurFade delay={BLUR_FADE_DELAY * 17}>
+              <div className="flex justify-center">
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  View all posts
+                  <span>→</span>
+                </Link>
+              </div>
+            </BlurFade>
+          )}
         </div>
       </section>
       <section id="contact">
