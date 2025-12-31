@@ -302,4 +302,63 @@ export const DATA = {
     },
     // Add more publications as you have them
   ],
+
+  // Reading List - Books & Papers
+  reading: {
+    currentlyReading: [
+      {
+        title: "Deep Learning",
+        author: "Ian Goodfellow, Yoshua Bengio, Aaron Courville",
+        type: "book", // "book", "paper", "article"
+        link: "https://www.deeplearningbook.org/",
+        cover: "📘",
+      },
+      {
+        title: "Attention Is All You Need",
+        author: "Vaswani et al.",
+        type: "paper",
+        link: "https://arxiv.org/abs/1706.03762",
+        cover: "📄",
+      },
+    ],
+    completed: [
+      {
+        title: "Designing Machine Learning Systems",
+        author: "Chip Huyen",
+        type: "book",
+        link: "https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/",
+        cover: "📗",
+      },
+      {
+        title: "Clean Code",
+        author: "Robert C. Martin",
+        type: "book",
+        link: "",
+        cover: "📕",
+      },
+      {
+        title: "An Image is Worth 16x16 Words: Transformers for Image Recognition",
+        author: "Dosovitskiy et al.",
+        type: "paper",
+        link: "https://arxiv.org/abs/2010.11929",
+        cover: "📄",
+      },
+    ],
+    wantToRead: [
+      {
+        title: "The Alignment Problem",
+        author: "Brian Christian",
+        type: "book",
+        link: "",
+        cover: "📙",
+      },
+      {
+        title: "Superintelligence",
+        author: "Nick Bostrom",
+        type: "book",
+        link: "",
+        cover: "📓",
+      },
+    ],
+  },
 } as const;

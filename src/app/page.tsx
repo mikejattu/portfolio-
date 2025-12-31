@@ -401,6 +401,108 @@ export default async function Page() {
         </div>
       </section>
       
+      {/* Reading Section */}
+      <section id="reading">
+        <div className="space-y-8 w-full py-12">
+          <BlurFade delay={BLUR_FADE_DELAY * 21}>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  Reading
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  What I&apos;m Reading 📚
+                </h2>
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Books and papers that are shaping my thinking.
+                </p>
+              </div>
+            </div>
+          </BlurFade>
+          
+          <div className="max-w-[800px] mx-auto space-y-8">
+            {/* Currently Reading */}
+            <BlurFade delay={BLUR_FADE_DELAY * 22}>
+              <div>
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <span className="text-green-500">●</span> Currently Reading
+                </h3>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {DATA.reading.currentlyReading.map((item, id) => (
+                    <BlurFade key={item.title} delay={BLUR_FADE_DELAY * 22 + id * 0.05}>
+                      <Link
+                        href={item.link || "#"}
+                        target={item.link ? "_blank" : undefined}
+                        className="group flex gap-3 rounded-lg border p-4 transition-all hover:shadow-md hover:border-primary/20"
+                      >
+                        <span className="text-2xl">{item.cover}</span>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-medium text-sm truncate group-hover:text-primary transition-colors">
+                            {item.title}
+                          </h4>
+                          <p className="text-xs text-muted-foreground truncate">{item.author}</p>
+                          <Badge variant="outline" className="mt-2 text-[10px]">
+                            {item.type}
+                          </Badge>
+                        </div>
+                      </Link>
+                    </BlurFade>
+                  ))}
+                </div>
+              </div>
+            </BlurFade>
+
+            {/* Completed */}
+            <BlurFade delay={BLUR_FADE_DELAY * 23}>
+              <div>
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <span className="text-blue-500">✓</span> Recently Completed
+                </h3>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {DATA.reading.completed.map((item, id) => (
+                    <BlurFade key={item.title} delay={BLUR_FADE_DELAY * 23 + id * 0.05}>
+                      <Link
+                        href={item.link || "#"}
+                        target={item.link ? "_blank" : undefined}
+                        className="group flex gap-3 rounded-lg border p-3 transition-all hover:shadow-md hover:border-primary/20"
+                      >
+                        <span className="text-xl">{item.cover}</span>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-medium text-xs truncate group-hover:text-primary transition-colors">
+                            {item.title}
+                          </h4>
+                          <p className="text-[10px] text-muted-foreground truncate">{item.author}</p>
+                        </div>
+                      </Link>
+                    </BlurFade>
+                  ))}
+                </div>
+              </div>
+            </BlurFade>
+
+            {/* Want to Read */}
+            <BlurFade delay={BLUR_FADE_DELAY * 24}>
+              <div>
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <span className="text-yellow-500">○</span> Want to Read
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {DATA.reading.wantToRead.map((item, id) => (
+                    <BlurFade key={item.title} delay={BLUR_FADE_DELAY * 24 + id * 0.05}>
+                      <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm">
+                        <span>{item.cover}</span>
+                        <span className="font-medium">{item.title}</span>
+                        <span className="text-muted-foreground text-xs">by {item.author}</span>
+                      </div>
+                    </BlurFade>
+                  ))}
+                </div>
+              </div>
+            </BlurFade>
+          </div>
+        </div>
+      </section>
+      
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
