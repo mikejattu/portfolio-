@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon, PenLine } from "lucide-react";
+import { HomeIcon, NotebookIcon, PenLine, FlaskConical, FileText, BookOpen } from "lucide-react";
 export const DATA = {
   name: "Mike Jattu",
   initials: "MJ",
@@ -28,6 +28,9 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "/#research", icon: FlaskConical, label: "Research" },
+    { href: "/#publications", icon: FileText, label: "Papers" },
+    { href: "/#reading", icon: BookOpen, label: "Reading" },
     { href: "/#projects", icon: NotebookIcon, label: "Projects" },
     { href: "/blog", icon: PenLine, label: "Blog" },
   ],
