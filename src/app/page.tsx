@@ -1,13 +1,16 @@
 import { BlogCard } from "@/components/blog-card";
 import { HackathonCard } from "@/components/hackathon-card";
+import { InteractiveTerminal } from "@/components/interactive-terminal";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
+import { PublicationCard } from "@/components/publication-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { getBlogPosts } from "@/data/blog";
 import { DATA } from "@/data/resume";
+import { Download, FileText } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
@@ -15,7 +18,6 @@ const BLUR_FADE_DELAY = 0.04;
 
 export default async function Page() {
   const posts = await getBlogPosts();
-  
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
@@ -41,6 +43,10 @@ export default async function Page() {
               </Avatar>
             </BlurFade>
           </div>
+          {/* Interactive Terminal */}
+          <BlurFade delay={BLUR_FADE_DELAY * 2}>
+            <InteractiveTerminal />
+          </BlurFade>
         </div>
       </section>
       <section id="about">
@@ -52,16 +58,78 @@ export default async function Page() {
             {DATA.summary}
           </Markdown>
         </BlurFade>
+        {/* CV Download Button */}
+        <BlurFade delay={BLUR_FADE_DELAY * 4.5}>
+          <div className="mt-4">
+            <Link
+              href={DATA.cvUrl}
+              target="_blank"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              <Download className="size-4" />
+              Download CV
+            </Link>
+          </div>
+        </BlurFade>
       </section>
-      <section id="work">
+      
+      {/* Research Interests Section */}
+      <section id="research-interests">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
+            <h2 className="text-xl font-bold">Research Interests</h2>
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 5.5}>
+            <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+              {DATA.researchInterests.statement}
+            </Markdown>
+          </BlurFade>
+          <div className="grid gap-3 sm:grid-cols-3 mt-2">
+            {DATA.researchInterests.areas.map((area, id) => (
+              <BlurFade key={area.title} delay={BLUR_FADE_DELAY * 6 + id * 0.05}>
+                <div className="rounded-lg border bg-card p-4 transition-shadow hover:shadow-md">
+                  <h3 className="font-semibold text-sm mb-2">{area.title}</h3>
+                  <p className="text-xs text-muted-foreground">{area.description}</p>
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section id="research">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 6.5}>
+            <h2 className="text-xl font-bold">Research Experience</h2>
+          </BlurFade>
+          {DATA.research.map((research, id) => (
+            <BlurFade
+              key={research.title}
+              delay={BLUR_FADE_DELAY * 7 + id * 0.05}
+            >
+              <ResumeCard
+                logoUrl={research.logoUrl}
+                altText={research.institution}
+                title={research.institution}
+                subtitle={research.title}
+                href={research.href}
+                badges={research.badges}
+                period={`${research.start} - ${research.end ?? "Present"}`}
+                description={research.description}
+              />
+            </BlurFade>
+          ))}
+        </div>
+      </section>
+      
+      <section id="work">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 7.5}>
             <h2 className="text-xl font-bold">Work Experience</h2>
           </BlurFade>
           {DATA.work.map((work, id) => (
             <BlurFade
               key={work.company}
-              delay={BLUR_FADE_DELAY * 6 + id * 0.05}
+              delay={BLUR_FADE_DELAY * 8 + id * 0.05}
             >
               <ResumeCard
                 key={work.company}
@@ -224,9 +292,58 @@ export default async function Page() {
           </BlurFade>
         </div>
       </section>
+      
+      {/* Publications Section */}
+      <section id="publications">
+        <div className="space-y-12 w-full py-12">
+          <BlurFade delay={BLUR_FADE_DELAY * 16}>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  Publications
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Academic Work
+                </h2>
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Research papers, preprints, and presentations.
+                </p>
+              </div>
+            </div>
+          </BlurFade>
+          <div className="grid grid-cols-1 gap-4 max-w-[800px] mx-auto">
+            {DATA.publications.length > 0 ? (
+              DATA.publications.map((pub, id) => (
+                <BlurFade key={pub.title} delay={BLUR_FADE_DELAY * 17 + id * 0.05}>
+                  <PublicationCard
+                    title={pub.title}
+                    authors={pub.authors}
+                    venue={pub.venue}
+                    year={pub.year}
+                    type={pub.type}
+                    status={pub.status}
+                    links={pub.links}
+                    abstract={pub.abstract}
+                  />
+                </BlurFade>
+              ))
+            ) : (
+              <BlurFade delay={BLUR_FADE_DELAY * 17}>
+                <div className="text-center py-8 text-muted-foreground">
+                  <FileText className="size-12 mx-auto mb-4 opacity-50" />
+                  <p className="text-sm">Publications coming soon...</p>
+                  <p className="text-xs mt-2">Currently working on research projects that will lead to publications.</p>
+                </div>
+              </BlurFade>
+            )}
+          </div>
+        </div>
+      </section>
+      
+      {/* Blog Section */}
       <section id="blog">
         <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 15}>
+          <BlurFade delay={BLUR_FADE_DELAY * 18}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
@@ -257,7 +374,7 @@ export default async function Page() {
               .map((post, id) => (
                 <BlurFade
                   key={post.slug}
-                  delay={BLUR_FADE_DELAY * 16 + id * 0.05}
+                  delay={BLUR_FADE_DELAY * 19 + id * 0.05}
                 >
                   <BlogCard
                     title={post.metadata.title}
@@ -269,7 +386,7 @@ export default async function Page() {
               ))}
           </div>
           {posts.length > 4 && (
-            <BlurFade delay={BLUR_FADE_DELAY * 17}>
+            <BlurFade delay={BLUR_FADE_DELAY * 20}>
               <div className="flex justify-center">
                 <Link
                   href="/blog"
@@ -283,6 +400,7 @@ export default async function Page() {
           )}
         </div>
       </section>
+      
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>

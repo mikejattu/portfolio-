@@ -9,8 +9,9 @@ export const DATA = {
   description:
     "Computer Science student and Data Scientist passionate about AI, machine learning, and building impactful applications.",
   summary:
-    "I am currently pursuing my Honours Computer Science degree with an AI specialization at the University of Alberta while working as a Junior Data Scientist with the City of Edmonton. I’ve built machine learning models, worked on computer vision research, and developed full-stack applications. I enjoy contributing to projects that combine AI with real-world impact, such as stroke rehabilitation and food waste reduction.",
+    "I am currently pursuing my Honours Computer Science degree with an AI specialization at the University of Alberta while working as a Junior Data Scientist with the City of Edmonton. I've built machine learning models, worked on computer vision research, and developed full-stack applications. I enjoy contributing to projects that combine AI with real-world impact, such as stroke rehabilitation and food waste reduction.",
   avatarUrl: "/headshot2_mike.jpg",
+  cvUrl: "/Mike_Jattu_CV.pdf", // Add your CV to the public folder
   skills: [
     "Python",
     "C++",
@@ -27,6 +28,7 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "/#projects", icon: NotebookIcon, label: "Projects" },
     { href: "/blog", icon: PenLine, label: "Blog" },
   ],
   contact: {
@@ -236,5 +238,68 @@ export const DATA = {
       image: "/hacked.png",
       links: [],
     },
+  ],
+  
+  // Research Interests Statement
+  researchInterests: {
+    statement: "I am deeply interested in developing AI systems that bridge the gap between theoretical machine learning and real-world applications. My research focuses on **computer vision for industrial automation**, **AI-assisted healthcare**, and **human-centered AI systems**. I am particularly drawn to problems where AI can augment human capabilities rather than replace them, making technology more accessible and impactful for underserved communities.",
+    areas: [
+      {
+        title: "Computer Vision & Industrial AI",
+        description: "Developing robust vision systems for real-world industrial applications, including segmentation models for monitoring and automation.",
+      },
+      {
+        title: "AI for Healthcare",
+        description: "Building accessible AI tools for medical education, rehabilitation, and diagnostics that can scale to underserved populations.",
+      },
+      {
+        title: "Human-Computer Interaction",
+        description: "Designing AI systems that effectively collaborate with humans, focusing on explainability and user-centered design.",
+      },
+    ],
+  },
+
+  // Research Experience
+  research: [
+    {
+      title: "Research Assistant - Computer Vision for Industrial Monitoring",
+      institution: "Faculty of Engineering, University of Alberta",
+      href: "https://ualberta.ca",
+      badges: [],
+      logoUrl: "/ualberta.jpg",
+      start: "Jan 2024",
+      end: "Present",
+      description: "Engineered a DeepLabV3 segmentation model for real-time sand level monitoring in dump hoppers, achieving 92% accuracy. Developed OPC UA-based communication system for industrial device connectivity. Deployed solutions in Linux production environment with real-time inference capabilities.",
+    },
+    {
+      title: "Independent Researcher - AI-Powered Stroke Rehabilitation",
+      institution: "Mind Motion Project",
+      href: "https://mindmotion.ai",
+      badges: [],
+      logoUrl: "/ualberta.jpg",
+      start: "2024",
+      end: "Present",
+      description: "Developing an AI-powered mobile application to make stroke rehabilitation more accessible. Designed pose estimation algorithms for tracking patient movements during exercises. Implemented real-time feedback system using Google Cloud Vision API.",
+    },
+  ],
+
+  // Publications & Presentations
+  publications: [
+    // Example structure - update with your actual publications
+    {
+      title: "Example: Computer Vision Approaches for Industrial Monitoring Systems",
+      authors: ["Mike Jattu", "Collaborator Name"],
+      venue: "Conference/Journal Name",
+      year: "2025",
+      type: "conference", // "conference", "journal", "preprint", "thesis", "poster"
+      status: "in-preparation", // "published", "accepted", "under-review", "in-preparation"
+      links: {
+        paper: "",
+        code: "",
+        slides: "",
+      },
+      abstract: "Brief description of the paper...",
+    },
+    // Add more publications as you have them
   ],
 } as const;
