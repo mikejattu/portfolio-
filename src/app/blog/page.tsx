@@ -1,6 +1,6 @@
 import BlurFade from "@/components/magicui/blur-fade";
+import { BlogCard } from "@/components/blog-card";
 import { getBlogPosts } from "@/data/blog";
-import Link from "next/link";
 
 export const metadata = {
   title: "Blog",
@@ -13,11 +13,17 @@ export default async function BlogPage() {
   const posts = await getBlogPosts();
 
   return (
-    <section>
+    <main className="space-y-8">
       <BlurFade delay={BLUR_FADE_DELAY}>
-        <h1 className="font-medium text-2xl mb-8 tracking-tighter">blog</h1>
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Blog</h1>
+          <p className="max-w-xl text-sm text-muted-foreground sm:text-base">
+            Notes on computer vision, machine learning, software, and lessons from building.
+          </p>
+        </div>
       </BlurFade>
-      {posts
+      <div className="grid gap-4 sm:grid-cols-2">
+        {posts
         .sort((a, b) => {
           if (
             new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
@@ -25,22 +31,19 @@ export default async function BlogPage() {
             return -1;
           }
           return 1;
-        })
-        .map((post, id) => (
-          <BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={post.slug}>
-            <Link
-              className="flex flex-col space-y-1 mb-4"
-              href={`/blog/${post.slug}`}
-            >
-              <div className="w-full flex flex-col">
-                <p className="tracking-tight">{post.metadata.title}</p>
-                <p className="h-6 text-xs text-muted-foreground">
-                  {post.metadata.publishedAt}
-                </p>
-              </div>
-            </Link>
-          </BlurFade>
-        ))}
-    </section>
+          })
+          .map((post, id) => (
+            <BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={post.slug}>
+              <BlogCard
+                title={post.metadata.title}
+                summary={post.metadata.summary}
+                publishedAt={post.metadata.publishedAt}
+                slug={post.slug}
+                className="h-full"
+              />
+            </BlurFade>
+          ))}
+      </div>
+    </main>
   );
 }

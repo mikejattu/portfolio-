@@ -1,16 +1,24 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon } from "lucide-react";
+import {
+  FileText,
+  FlaskConical,
+  HomeIcon,
+  NotebookIcon,
+  PenLine,
+} from "lucide-react";
+
 export const DATA = {
   name: "Mike Jattu",
   initials: "MJ",
-  url: "https://mikejattu.dev",
+  url: "https://mikejattu.vercel.app",
   location: "Edmonton, AB",
   locationLink: "https://www.google.com/maps/place/Edmonton,+AB",
   description:
-    "Computer Science student and Data Scientist passionate about AI, machine learning, and building impactful applications.",
+    "Honors Computer Science student and data scientist building practical AI and computer vision systems.",
   summary:
-    "I am currently pursuing my Honours Computer Science degree with an AI specialization at the University of Alberta while working as a Junior Data Scientist with the City of Edmonton. I’ve built machine learning models, worked on computer vision research, and developed full-stack applications. I enjoy contributing to projects that combine AI with real-world impact, such as stroke rehabilitation and food waste reduction.",
+    "I am pursuing a **BSc Honors in Computer Science with an AI Option** at the University of Alberta. My work spans computer vision research for industrial monitoring, open-source traffic analytics, and software that connects AI systems to real operational data.",
   avatarUrl: "/headshot2_mike.jpg",
+  cvUrl: "/Mike_Jattu_CV.pdf",
   skills: [
     "Python",
     "C++",
@@ -18,16 +26,21 @@ export const DATA = {
     "TypeScript",
     "React",
     "Node.js",
+    "FastAPI",
     "SQL",
     "MongoDB",
     "Docker",
     "TensorFlow",
     "PyTorch",
-    "Matlab",
+    "Databricks",
+    "Computer Vision",
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/projects", icon: NotebookIcon, label: "Projects" },
+    { href: "/#research", icon: FlaskConical, label: "Research" },
+    { href: "/#publications", icon: FileText, label: "Papers" },
+    { href: "/#projects", icon: NotebookIcon, label: "Projects" },
+    { href: "/blog", icon: PenLine, label: "Blog" },
   ],
   contact: {
     email: "sjattu@ualberta.ca",
@@ -41,200 +54,265 @@ export const DATA = {
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://linkedin.com/in/mikejattu",
+        url: "https://www.linkedin.com/in/mikejattu",
         icon: Icons.linkedin,
-        navbar: true,
-      },
-      Youtube: {
-        name: "Youtube",
-        url: "https://youtube.com/@mikejattu",
-        icon: Icons.youtube,
         navbar: true,
       },
       email: {
         name: "Send Email",
         url: "mailto:sjattu@ualberta.ca",
         icon: Icons.email,
-        navbar: true,
+        navbar: false,
       },
     },
   },
-
   work: [
     {
       company: "City of Edmonton",
-      href: "https://edmonton.ca",
-      badges: [],
+      href: "https://github.com/CityofEdmonton/cityvision",
+      badges: ["Open Source"],
       location: "Edmonton, AB",
-      title: "Junior Data Scientist",
+      title: "Data Scientist",
       logoUrl: "/city.jpg",
-      start: "May 2024",
-      end: "Present",
+      start: "May 2025",
+      end: "Dec 2025",
       description:
-        "Developing AI-driven solutions for municipal projects, focusing on data analysis, visualization, and computer vision models. Worked on projects including hopper oil sands level detection and optimization dashboards for city operations.",
+        "Developed and deployed a vehicle-detection model and data pipeline for continuous training and lifecycle management. The open-source traffic system reduced vehicle-detection infrastructure costs by about 65%.",
     },
-    {
-      company: "Faculty of Engineering, University of Alberta",
-      href: "https://ualberta.ca",
-      badges: [],
-      location: "Edmonton, AB",
-      title: "Research Assistant",
-      logoUrl: "/ualberta.jpg",
-      start: "Jan 2024",
-      end: "Present",
-      description:
-        "I engineered and deployed a computer vision solution using a DeepLabV3 segmentation model to monitor sand levels in dump hoppers, achieving 92% accuracy and optimizing oil sands operations within a Linux environment. Concurrently, I further optimized oil sands operations by developing an OPC UA-based communication system that successfully established connectivity with company cameras and other industrial devices."
-        },
     {
       company: "Ryan",
       href: "https://ryan.com/canada/",
       badges: [],
-      location: "Edmonton, AB",
-      title: "Software Developer Intern",
+      location: "Remote",
+      title: "Software Engineer Intern",
       logoUrl: "/ryan.png",
       start: "May 2024",
-      end: "Present",
+      end: "Apr 2026",
       description:
-        " I designed and developed both VBA macros for Excel to automate complex tasks, enhancing data management efficiency by 90%, and a modern web application (using React, FastAPI, Databricks, and TypeScript) to streamline the lead qualification process for the SHRED team by enabling efficient company information retrieval.",
+        "Developed MCP-based chatbots that connect multiple business data sources and built a lead-qualification web application that reduced information retrieval time by 60%.",
     },
   ],
   teaching: [
     {
-    title: "Teaching Assistant - CMPUT 101  ( Intro to Computing )",
-    href: "https://ualberta.ca",
-    badges: [],
-    location: "Edmonton, AB",
-    subtitle: "University of Alberta",
-    logoUrl: "/ualberta.jpg",
-    start: "May 2025",
-    end: "Jun 2025",
-    description:
-      "I managed a 3-hour lab section of 80 students, simultaneously providing both constructive feedback through grading and direct assistance with labs, assignments, and core lecture content."
-      },
-    {
-    title: "Teaching Assistant - CMPUT 204 (Algorithms I)",
-    href: "https://ualberta.ca",
-    badges: [],
-    location: "Edmonton, AB",
-    subtitle: "University of Alberta",
-    logoUrl: "/ualberta.jpg",
-    start: "Jan 2025",
-    end: "Apr 2025",
-    description:
-      "I provided instructional support by grading student work and offering constructive feedback, assisting with exercises and lecture content, and holding regular office hours to resolve student doubts."
-    },
-    {
-      title: " Teaching Assistant - CMPUT 229 ( Computer Organization and Architecture I )",
-      href: "https://ualberta.ca",
+      title: "Undergraduate Teaching Assistant",
+      href: "https://www.ualberta.ca/en/computing-science/index.html",
       badges: [],
       location: "Edmonton, AB",
       subtitle: "University of Alberta",
       logoUrl: "/ualberta.jpg",
-      start: "Jan 2024",
-      end: "Apr 2024",
+      start: "Sept 2024",
+      end: "Present",
       description:
-        "I managed a 3-hour lab section for 80 students, providing both constructive feedback through grading and direct assistance with labs, assignments, and core lecture content.",
+        "Supported courses in introductory computing, algorithms, computer architecture, machine learning, honors calculus, and honors linear algebra through labs, office hours, grading, and student feedback.",
     },
-
   ],
   education: [
     {
       school: "University of Alberta",
-      href: "https://ualberta.ca",
-      degree: "BSc Honors Computer Science (AI Option)",
+      href: "https://www.ualberta.ca/",
+      degree: "BSc Honors in Computer Science, AI Option",
       logoUrl: "/ualberta.jpg",
       start: "2022",
-      end: "2027 (Expected Graduation)",
-    }
+      end: "May 2027",
+    },
   ],
   projects: [
     {
-      title: "Mind Motion",
-      href: "https://mindmotion.ai",
-      dates: "2024 - Present",
+      title: "Guardian",
+      href: "https://github.com/aryankumar2811/shift_simulator",
+      dates: "2026",
       active: true,
       description:
-        "An AI-powered stroke rehabilitation assistant that provides tailored exercises, tracks recovery, and offers real-time feedback to patients, making therapy more accessible and effective.",
-      technologies: [
-        "React Native",
-        "Node.js",
-        "MongoDB",
-        "Google Cloud Vision",
-        "Firebase",
-        "Express",
-      ],
+        "Scenario-based learning platform that helps ESL learners prepare for the Alberta Basic Security Training exam with multilingual and voice support.",
+      technologies: ["TypeScript", "React", "AI", "Speech"],
       links: [
         {
-          type: "Website",
-          href: "https://mindmotion.ai",
-          icon: <Icons.globe className="size-3" />,
+          type: "Source",
+          href: "https://github.com/aryankumar2811/shift_simulator",
+          icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/mindmotion.png",
+      image: "",
       video: "",
     },
     {
-      title: "Food Minder",
-      href: "https://foodminder.app",
-      dates: "2025 - Present",
+      title: "RideSafe",
+      href: "https://github.com/mikejattu/RideSafe",
+      dates: "2025",
       active: true,
       description:
-        "Cross-platform app to reduce food waste by tracking groceries, predicting expiry dates, scanning receipts, suggesting recipes, and recommending donation centers.",
-      technologies: [
-        "React Native",
-        "TypeScript",
-        "Node.js",
-        "MongoDB",
-        "Firebase",
-        "OCR",
-      ],
+        "Real-time public-transit safety application that uses a Vision Transformer to detect threats and supports immediate rider reporting.",
+      technologies: ["Computer Vision", "Vision Transformer", "Python", "React"],
       links: [
         {
-          type: "Website",
-          href: "https://foodminder.app",
-          icon: <Icons.globe className="size-3" />,
+          type: "Source",
+          href: "https://github.com/mikejattu/RideSafe",
+          icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/foodminder.png",
+      image: "",
+      video: "",
+    },
+    {
+      title: "FoodMinder",
+      href: "https://github.com/samia225/FoodMinder",
+      dates: "2025",
+      active: true,
+      description:
+        "AI-assisted grocery manager with receipt OCR, expiry reminders, recipe suggestions, and nearby food-donation discovery.",
+      technologies: ["OCR", "TypeScript", "React Native", "Firebase"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/samia225/FoodMinder",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
       video: "",
     },
   ],
   hackathons: [
     {
-      title: " 🏆 1st Place at Hack4Health 2025",
-      dates: "Apr 2025",
+      title: "3rd Place, DevCon Hackathon 2026",
+      dates: "2026",
+      location: "University of Alberta",
+      description:
+        "Built Guardian, a multilingual, voice-enabled training platform for security certification learners.",
+      image: "",
+      links: [
+        {
+          title: "Source",
+          href: "https://github.com/aryankumar2811/shift_simulator",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "1st Place, Hack4Health 2025",
+      dates: "2025",
       location: "Edmonton, AB",
       description:
-        "Built Meducation, which is an AI-powered platform that revolutionizes medical education with tools like AI X-ray analysis, smart research summaries, VR case studies, and personalized exam prep to make learning more engaging, efficient, and impactful.",
-      image: "/aisocialgood.png",
+        "Built an AI-assisted medical education experience focused on making complex clinical material easier to explore.",
+      image: "",
       links: [],
     },
     {
-      title: "2nd Place at Devcon Hackathon 2025",
-      dates: "Mar 2025",
+      title: "2nd Place, DevCon Hackathon 2025",
+      dates: "2025",
       location: "University of Alberta",
       description:
-        "Built RideSafe, which is an AI-powered app that enhances public transit safety by detecting real-time threats with computer vision and enabling instant rider reports through a seamless mobile experience.",
-      image: "/hacked.png",
-      links: [],
-    },
-    {
-      title: "HackED 2025",
-      dates: "Feb 2025",
-      location: "University of Alberta",
-      description:
-        "Built FoodMinder, a smart grocery management app that helps reduce food waste, save money, and support sustainability through AI-powered receipt scanning, expiry tracking, recipe suggestions, and donation center recommendations.",
-      image: "/hacked.png",
-      links: [],
-    },
-  {
-      title: "2nd Place at DevelopEd 2.0 2024",
-      dates: "Feb 2025",
-      location: "University of Alberta",
-      description:
-      "Built, Scheduler, a dynamic schedule-making app that helps users balance fixed commitments with flexible tasks, making time management smarter and more adaptable.",
-      image: "/hacked.png",
-      links: [],
+        "Built RideSafe, a real-time threat-detection and rider-reporting application for public transit.",
+      image: "",
+      links: [
+        {
+          title: "Source",
+          href: "https://github.com/mikejattu/RideSafe",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
     },
   ],
+  researchInterests: {
+    statement:
+      "My research interests lie in **reinforcement learning**, **machine learning theory**, **continual and adaptive learning**, and **reliable machine learning**. I am particularly interested in understanding how learning algorithms behave, characterizing their reliability and uncertainty, and developing robust decision-making methods for changing environments. I also have a strong background in **computer vision**, especially segmentation-based systems and uncertainty-aware prediction.",
+    areas: [
+      {
+        title: "Reinforcement Learning",
+        description:
+          "Learning algorithms for robust sequential decision-making under uncertainty.",
+      },
+      {
+        title: "Machine Learning Theory",
+        description:
+          "Understanding the behavior, guarantees, and limitations of learning methods.",
+      },
+      {
+        title: "Continual & Adaptive Learning",
+        description:
+          "Methods that adapt reliably as data, tasks, and environments change.",
+      },
+      {
+        title: "Reliable Machine Learning",
+        description:
+          "Uncertainty-aware models and dependable prediction, including segmentation-based computer vision.",
+      },
+    ],
+  },
+  research: [
+    {
+      title: "Undergraduate Research Assistant",
+      institution: "PDASA Lab, University of Alberta",
+      href: "https://apps.ualberta.ca/directory/person/bhuang",
+      badges: [],
+      logoUrl: "/ualberta.jpg",
+      start: "Jan 2025",
+      end: "Sept 2026",
+      description:
+        "Developed a vision-based soft sensor using DeepLabV3 semantic segmentation and contour post-processing to estimate oil-sands levels in dump hoppers, reaching 92% accuracy under industrial conditions.",
+    },
+  ],
+  publications: [
+    {
+      title: "Oil-Sands Level Identification in a Dump Hopper",
+      authors: ["Mike Jattu", "K. H. S. Sekhon", "S. S. Bhase", "Biao Huang"],
+      venue: "University of Alberta, manuscript in preparation",
+      year: "2025",
+      type: "preprint",
+      status: "in-preparation",
+      links: {},
+      abstract:
+        "A vision-based soft-sensing method combining DeepLabV3 semantic segmentation with contour post-processing to estimate hopper fill levels from industrial camera footage.",
+    },
+  ],
+  reading: {
+    currentlyReading: [
+      {
+        title: "Deep Learning",
+        author: "Ian Goodfellow, Yoshua Bengio, Aaron Courville",
+        type: "book",
+        link: "https://www.deeplearningbook.org/",
+        cover: "Book",
+      },
+      {
+        title: "Attention Is All You Need",
+        author: "Vaswani et al.",
+        type: "paper",
+        link: "https://arxiv.org/abs/1706.03762",
+        cover: "Paper",
+      },
+    ],
+    completed: [
+      {
+        title: "Designing Machine Learning Systems",
+        author: "Chip Huyen",
+        type: "book",
+        link: "https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/",
+        cover: "Book",
+      },
+      {
+        title: "An Image is Worth 16x16 Words",
+        author: "Dosovitskiy et al.",
+        type: "paper",
+        link: "https://arxiv.org/abs/2010.11929",
+        cover: "Paper",
+      },
+    ],
+    wantToRead: [
+      {
+        title: "The Alignment Problem",
+        author: "Brian Christian",
+        type: "book",
+        link: "",
+        cover: "Book",
+      },
+      {
+        title: "Superintelligence",
+        author: "Nick Bostrom",
+        type: "book",
+        link: "",
+        cover: "Book",
+      },
+    ],
+  },
 } as const;

@@ -9,6 +9,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { FolderKanban } from "lucide-react";
 import Markdown from "react-markdown";
 
 interface Props {
@@ -46,10 +47,14 @@ export function ProjectCard({
         "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
       }
     >
-      <Link
-        href={href || "#"}
-        className={cn("block cursor-pointer", className)}
-      >
+      {(video || image) && (
+        <Link
+          href={href || "/#projects"}
+          target={href?.startsWith("http") ? "_blank" : undefined}
+          rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+          aria-label={`Open ${title}`}
+          className={cn("block cursor-pointer", className)}
+        >
         {video && (
           <video
             src={video}
@@ -69,10 +74,29 @@ export function ProjectCard({
             className="h-40 w-full overflow-hidden object-cover object-top"
           />
         )}
-      </Link>
+        </Link>
+      )}
+      {!video && !image && (
+        <div className="flex h-24 items-center justify-center border-b bg-muted/40 text-muted-foreground">
+          <FolderKanban className="size-7" aria-hidden="true" />
+        </div>
+      )}
       <CardHeader className="px-2">
         <div className="space-y-1">
-          <CardTitle className="mt-1 text-base">{title}</CardTitle>
+          <CardTitle className="mt-1 text-base">
+            {href ? (
+              <Link
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="hover:underline"
+              >
+                {title}
+              </Link>
+            ) : (
+              title
+            )}
+          </CardTitle>
           <time className="font-sans text-xs">{dates}</time>
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
@@ -101,7 +125,13 @@ export function ProjectCard({
         {links && links.length > 0 && (
           <div className="flex flex-row flex-wrap items-start gap-1">
             {links?.map((link, idx) => (
-              <Link href={link?.href} key={idx} target="_blank">
+              <Link
+                href={link.href}
+                key={idx}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${link.type} for ${title}`}
+              >
                 <Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
                   {link.icon}
                   {link.type}
