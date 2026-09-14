@@ -319,6 +319,7 @@ export function InteractiveTerminal() {
           <input
             ref={inputRef}
             type="text"
+            aria-label="Portfolio terminal command"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -331,12 +332,6 @@ export function InteractiveTerminal() {
         </div>
       </div>
 
-      {/* Terminal Footer */}
-      <div className="bg-neutral-800 px-4 py-2 text-xs text-neutral-500 font-mono flex justify-between">
-        <span>Press Tab for autocomplete</span>
-        <span>↑↓ for history</span>
-      </div>
     </div>
   );
 }
-

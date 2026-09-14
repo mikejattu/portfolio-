@@ -25,12 +25,14 @@ export default async function Page() {
           <div className="gap-2 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
               <BlurFadeText
+                as="h1"
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
                 text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
               />
               <BlurFadeText
+                as="p"
                 className="max-w-[600px] md:text-xl"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
@@ -64,6 +66,7 @@ export default async function Page() {
             <Link
               href={DATA.cvUrl}
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             >
               <Download className="size-4" />
@@ -84,7 +87,7 @@ export default async function Page() {
               {DATA.researchInterests.statement}
             </Markdown>
           </BlurFade>
-          <div className="grid gap-3 sm:grid-cols-3 mt-2">
+          <div className="mt-2 grid gap-3 sm:grid-cols-2">
             {DATA.researchInterests.areas.map((area, id) => (
               <BlurFade key={area.title} delay={BLUR_FADE_DELAY * 6 + id * 0.05}>
                 <div className="rounded-lg border bg-card p-4 transition-shadow hover:shadow-md">
@@ -146,7 +149,7 @@ export default async function Page() {
           ))}
         </div>
       </section>
-      <section id="Teaching">
+      <section id="teaching">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
             <h2 className="text-xl font-bold">Teaching Experience</h2>
@@ -350,7 +353,7 @@ export default async function Page() {
                   Blog
                 </div>
                 <h2 className="text-4xl font-bold tracking-tighter sm:text-6xl">
-                  Mike&apos;s Blog ✍️
+                  Mike&apos;s Blog
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   I write about AI, machine learning, software development, and
@@ -429,10 +432,15 @@ export default async function Page() {
                 </h3>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {DATA.reading.currentlyReading.map((item, id) => (
-                    <BlurFade key={item.title} delay={BLUR_FADE_DELAY * 22 + id * 0.05}>
+                    <BlurFade
+                      key={item.title}
+                      className="min-w-0"
+                      delay={BLUR_FADE_DELAY * 22 + id * 0.05}
+                    >
                       <Link
                         href={item.link || "#"}
                         target={item.link ? "_blank" : undefined}
+                        rel={item.link ? "noopener noreferrer" : undefined}
                         className="group flex gap-3 rounded-lg border p-4 transition-all hover:shadow-md hover:border-primary/20"
                       >
                         <span className="text-2xl">{item.cover}</span>
@@ -460,10 +468,15 @@ export default async function Page() {
                 </h3>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {DATA.reading.completed.map((item, id) => (
-                    <BlurFade key={item.title} delay={BLUR_FADE_DELAY * 23 + id * 0.05}>
+                    <BlurFade
+                      key={item.title}
+                      className="min-w-0"
+                      delay={BLUR_FADE_DELAY * 23 + id * 0.05}
+                    >
                       <Link
                         href={item.link || "#"}
                         target={item.link ? "_blank" : undefined}
+                        rel={item.link ? "noopener noreferrer" : undefined}
                         className="group flex gap-3 rounded-lg border p-3 transition-all hover:shadow-md hover:border-primary/20"
                       >
                         <span className="text-xl">{item.cover}</span>
@@ -517,6 +530,8 @@ export default async function Page() {
                 Want to chat? Just shoot me a dm{" "}
                 <Link
                   href={DATA.contact.social.LinkedIn.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-500 hover:underline"
                 >
                   with a direct question on LinkedIn

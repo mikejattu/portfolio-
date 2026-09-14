@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { ChevronRightIcon } from "lucide-react";
+import { ChevronRightIcon, ExternalLinkIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -19,6 +19,7 @@ interface ResumeCardProps {
   period: string;
   description?: string;
 }
+
 export const ResumeCard = ({
   logoUrl,
   altText,
@@ -31,80 +32,76 @@ export const ResumeCard = ({
 }: ResumeCardProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    if (description) {
-      e.preventDefault();
-      setIsExpanded(!isExpanded);
-    }
-  };
-
   return (
-    <Link
-      href={href || "#"}
-      className="block cursor-pointer"
-      onClick={handleClick}
-    >
-      <Card className="flex">
-        <div className="flex-none">
-          <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
-            <AvatarImage
-              src={logoUrl}
-              alt={altText}
-              className="object-contain"
-            />
-            <AvatarFallback>{altText[0]}</AvatarFallback>
-          </Avatar>
-        </div>
-        <div className="flex-grow ml-4 items-center flex-col group">
-          <CardHeader>
-            <div className="flex items-center justify-between gap-x-2 text-base">
-              <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
-                {title}
-                {badges && (
-                  <span className="inline-flex gap-x-1">
-                    {badges.map((badge, index) => (
-                      <Badge
-                        variant="secondary"
-                        className="align-middle text-xs"
-                        key={index}
-                      >
-                        {badge}
-                      </Badge>
-                    ))}
-                  </span>
-                )}
+    <Card className="group flex">
+      <div className="flex-none">
+        <Avatar className="m-auto size-12 border bg-muted dark:bg-foreground">
+          <AvatarImage src={logoUrl} alt={altText} className="object-contain" />
+          <AvatarFallback>{altText[0]}</AvatarFallback>
+        </Avatar>
+      </div>
+      <div className="ml-4 flex min-w-0 flex-grow flex-col">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <button
+              type="button"
+              disabled={!description}
+              aria-expanded={description ? isExpanded : undefined}
+              onClick={() => description && setIsExpanded((value) => !value)}
+              className="inline-flex min-w-0 items-center gap-1 text-left text-xs font-semibold leading-tight disabled:cursor-default sm:text-sm"
+            >
+              <span>{title}</span>
+              {badges?.map((badge) => (
+                <Badge
+                  variant="secondary"
+                  className="shrink-0 align-middle text-xs"
+                  key={badge}
+                >
+                  {badge}
+                </Badge>
+              ))}
+              {description && (
                 <ChevronRightIcon
                   className={cn(
-                    "size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
-                    isExpanded ? "rotate-90" : "rotate-0"
+                    "size-4 shrink-0 transition-transform duration-300",
+                    isExpanded && "rotate-90",
                   )}
                 />
-              </h3>
-              <div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
+              )}
+            </button>
+            <div className="flex shrink-0 items-center gap-2">
+              <span className="text-right text-xs tabular-nums text-muted-foreground sm:text-sm">
                 {period}
-              </div>
+              </span>
+              {href && (
+                <Link
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${title} website`}
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <ExternalLinkIcon className="size-3.5" />
+                </Link>
+              )}
             </div>
-            {subtitle && <div className="font-sans text-xs">{subtitle}</div>}
-          </CardHeader>
-          {description && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{
-                opacity: isExpanded ? 1 : 0,
-
-                height: isExpanded ? "auto" : 0,
-              }}
-              transition={{
-                duration: 0.7,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="mt-2 text-xs sm:text-sm"
-            >
-              {description}
-            </motion.div>
-          )}
-        </div>
-      </Card>
-    </Link>
+          </div>
+          {subtitle && <div className="font-sans text-xs">{subtitle}</div>}
+        </CardHeader>
+        {description && (
+          <motion.div
+            initial={false}
+            animate={{
+              opacity: isExpanded ? 1 : 0,
+              height: isExpanded ? "auto" : 0,
+            }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden pr-4 text-xs text-muted-foreground sm:text-sm"
+          >
+            <p className="pb-4">{description}</p>
+          </motion.div>
+        )}
+      </div>
+    </Card>
   );
 };

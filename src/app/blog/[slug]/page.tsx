@@ -4,6 +4,8 @@ import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -18,6 +20,7 @@ export async function generateMetadata({
   };
 }): Promise<Metadata | undefined> {
   let post = await getPost(params.slug);
+  if (!post) return;
 
   let {
     title,
@@ -65,7 +68,7 @@ export default async function Blog({
   }
 
   return (
-    <section id="blog">
+    <main id="blog" className="space-y-8">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -88,20 +91,32 @@ export default async function Blog({
           }),
         }}
       />
-      <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
-        {post.metadata.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-        <Suspense fallback={<p className="h-5" />}>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            {formatDate(post.metadata.publishedAt)}
+      <div className="space-y-5">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="size-4" />
+          All posts
+        </Link>
+        <div className="space-y-2">
+          <h1 className="max-w-[650px] text-3xl font-bold tracking-tight">
+            {post.metadata.title}
+          </h1>
+          <Suspense fallback={<p className="h-5" />}>
+            <p className="text-sm text-muted-foreground">
+              {formatDate(post.metadata.publishedAt)}
+            </p>
+          </Suspense>
+          <p className="max-w-[650px] text-sm text-muted-foreground">
+            {post.metadata.summary}
           </p>
-        </Suspense>
+        </div>
       </div>
       <article
-        className="prose dark:prose-invert"
+        className="prose max-w-full dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: post.source }}
       ></article>
-    </section>
+    </main>
   );
 }

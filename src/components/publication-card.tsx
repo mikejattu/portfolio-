@@ -10,9 +10,9 @@ interface PublicationCardProps {
   type: "conference" | "journal" | "preprint" | "thesis" | "poster";
   status: "published" | "accepted" | "under-review" | "in-preparation";
   links?: {
-    paper?: string;
-    code?: string;
-    slides?: string;
+    readonly paper?: string;
+    readonly code?: string;
+    readonly slides?: string;
   };
   abstract?: string;
 }
@@ -98,6 +98,7 @@ export function PublicationCard({
             <Link
               href={links.paper}
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
             >
               <FileText className="size-3" />
@@ -108,6 +109,7 @@ export function PublicationCard({
             <Link
               href={links.code}
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
             >
               <Github className="size-3" />
@@ -118,6 +120,7 @@ export function PublicationCard({
             <Link
               href={links.slides}
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
             >
               <Presentation className="size-3" />
@@ -129,4 +132,3 @@ export function PublicationCard({
     </div>
   );
 }
-

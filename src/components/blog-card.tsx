@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Calendar } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import Link from "next/link";
 
 interface BlogCardProps {
@@ -21,14 +21,11 @@ export function BlogCard({
     <Link
       href={`/blog/${slug}`}
       className={cn(
-        "group relative block rounded-xl border border-border/50 bg-card p-6 transition-all duration-300 hover:border-primary/20 hover:bg-accent/50 hover:shadow-lg",
+        "group block rounded-lg border border-border/60 bg-card p-5 transition-colors hover:border-foreground/20 hover:bg-accent/50",
         className
       )}
     >
-      {/* Gradient accent on hover */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      
-      <div className="relative space-y-3">
+      <div className="space-y-3">
         {/* Date */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <Calendar className="size-3" />
@@ -52,14 +49,11 @@ export function BlogCard({
         </p>
 
         {/* Read more indicator */}
-        <div className="flex items-center gap-1 text-xs font-medium text-primary opacity-0 transition-all duration-300 group-hover:opacity-100">
+        <div className="flex items-center gap-1 text-xs font-medium text-primary">
           Read more
-          <span className="transition-transform duration-300 group-hover:translate-x-1">
-            →
-          </span>
+          <ArrowRight className="size-3 transition-transform duration-300 group-hover:translate-x-1" />
         </div>
       </div>
     </Link>
   );
 }
-
